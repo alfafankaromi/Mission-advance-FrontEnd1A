@@ -15,6 +15,7 @@ Integrasi data dengan REST API sungguhan (menggantikan array statis)
 - **Axios** — HTTP client untuk komunikasi dengan REST API
 - **mockapi.io** — REST API (mock) sebagai sumber data kelas
 - **lucide-react** — icon set
+- **Zustand** — state management global untuk data kelas
 
 ## 🚀 Fitur Utama
 
@@ -23,7 +24,7 @@ Data kelas yang sebelumnya berupa array statis di dalam kode, sekarang diambil &
 
 - **`src/services/api/axiosClient.js`** — instance Axios terpusat (base URL dari `.env`), dilengkapi interceptor untuk logging request & penanganan error terpusat.
 - **`src/services/api/kelasApi.js`** — kumpulan fungsi pemanggilan API murni (GET, POST, PUT, DELETE) untuk resource `kelas`.
-- **`src/hooks/useKelas.js`** — custom hook yang memisahkan seluruh logic fetching & state (data, loading, error) dari komponen UI.
+- **`src/store/kelasStore.js`** — global store menggunakan Zustand, menyimpan state (data, loading, error) dan seluruh actions CRUD (GET, ADD, UPDATE, DELETE) yang memanggil `kelasApi.js`.
 - **GET** — data diambil otomatis saat Homepage dimuat (`useEffect` di dalam custom hook), lengkap dengan tampilan *loading* dan pesan *error* jika gagal.
 - **ADD / UPDATE / DELETE** — seluruh aksi CRUD di form & tombol kartu kelas kini memanggil API secara langsung (asynchronous), dengan indikator loading pada tombol saat proses berlangsung.
 - **Environment Variable** — base URL API disimpan di file `.env` (tidak di-hardcode), lihat bagian di bawah.
@@ -43,8 +44,8 @@ Data kelas yang sebelumnya berupa array statis di dalam kode, sekarang diambil &
 │   │   └── organisms/
 │   ├── data/
 │   │   └── dataKelas.js      # daftar kategori & referensi struktur data (data kelas asli kini dari API)
-│   ├── hooks/
-│   │   └── useKelas.js       # custom hook - state & logic API kelas
+│   ├── store/
+│   │   └── kelasStore.js     # Zustand store - state & logic API kelas
 │   ├── services/
 │   │   └── api/
 │   │       ├── axiosClient.js   # instance axios + interceptor
