@@ -29,7 +29,7 @@ Data kelas yang sebelumnya berupa array statis di dalam kode, sekarang diambil &
 - **ADD / UPDATE / DELETE** — seluruh aksi CRUD di form & tombol kartu kelas kini memanggil API secara langsung (asynchronous), dengan indikator loading pada tombol saat proses berlangsung.
 - **Environment Variable** — base URL API disimpan di file `.env` (tidak di-hardcode), lihat bagian di bawah.
 
----
+- .env VITE_API_BASE_URL=https://6aa00b9b3e0d88d3d7e5556b.mockapi.io
 
 ## 📁 Struktur Folder Project
 
